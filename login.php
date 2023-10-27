@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,10 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } elseif (mysqli_num_rows($result_customer) == 1) {
         // Login sebagai customer berhasil
+        $row = mysqli_fetch_assoc($result_customer);
+        $_SESSION['username'] = $row['username']; // Simpan nama pengguna ke sesi
         header("Location: index.php");
         exit();
     } elseif (mysqli_num_rows($result_tukang) == 1) {
         // Login sebagai tukang berhasil
+        $row = mysqli_fetch_assoc($result_tukang);
+        $_SESSION['username'] = $row['username']; // Simpan nama pengguna ke sesi
         header("Location: index.php");
         exit();
     } else {
