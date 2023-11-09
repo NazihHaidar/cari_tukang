@@ -1,71 +1,55 @@
-<?php
-session_start();
-require_once 'db.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $query = "SELECT * FROM customer WHERE username = '$username' AND password = '$password'";
-    $result_customer = mysqli_query($conn, $query);
-
-    $query = "SELECT * FROM tukang WHERE username = '$username' AND password = '$password'";
-    $result_tukang = mysqli_query($conn, $query);
-
-    $query = "SELECT * FROM tb_admin WHERE username = '$username' AND password = '$password'";
-    $result_admin = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result_admin) == 1) {
-        // Login sebagai admin berhasil
-        header("Location: admin/home.admin.php");
-        exit();
-    } elseif (mysqli_num_rows($result_customer) == 1) {
-        // Login sebagai customer berhasil
-        $row = mysqli_fetch_assoc($result_customer);
-        $_SESSION['username'] = $row['username'];
-        header("Location: index.php");
-        exit();
-    } elseif (mysqli_num_rows($result_tukang) == 1) {
-        // Login sebagai tukang berhasil
-        $row = mysqli_fetch_assoc($result_tukang);
-        $_SESSION['username'] = $row['username'];
-        header("Location: index.php");
-        exit();
-    } else {
-        $login_error = "Username/Password salah. Silakan coba lagi.";
-    }
-}
-
-?>
-
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Form Login</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="description" content="Login - Register Template">
+    <meta name="author" content="Lorenzo Angelino aka MrLolok">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mn.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9AD6B;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <img src="img/logo.png" alt="Logo" class="logo">
-        <h2>LOGIN</h2>
-        <form method="POST" action="login.php">
-            <input class="input" id="username" name="username" placeholder="Masukkan username" required><br><br>
+    <div id="container-login">
+        <div id="title">
+        <img src="img/logo.png" width="35" height="35"> <br> Login Cari Tukang
+        </div>
 
-            <input type="password" class="input" id="password" name="password" placeholder="Masukkan password"
-                required><br><br>
+        <form action="cek_login.php" method="post">
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input id="username" placeholder="Username" name="username" type="text" required class="validate" autocomplete="off">
+            </div>
 
-            <button class="button"><span>Login</span></button>
-            <p>Belum mempunyai akun? <a class="daftar-link" href="register.php">Daftar Disini</a></p>
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input id="password" placeholder="Password" name="password" type="password" required class="validate" autocomplete="off">
+            </div>
+                <br><br>
+            <input type="submit" value="LOGIN" />
         </form>
 
-        <?php
-        if (isset($login_error)) {
-            echo "<p>$login_error</p>";
-        }
-        ?>
+        <div class="forgot-password">
+        </div>
+        <div class="privacy">
+        </div>
+
+        <div class="register">
+            <span style="color: #657575">Don't have an account yet?</span>
+            <a href="register.php"><button id="register-link">Register here</button></a>
+        </div>
     </div>
 </body>
 

@@ -1,77 +1,80 @@
-<?php
-require_once 'db.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $email = $_POST["email"];
-    $nama = $_POST["nama"];
-    $no_telp = $_POST["no_telp"];
-    $alamat = $_POST["alamat"];
-    $daftar_sebagai = $_POST["daftar_sebagai"];
-
-    if ($daftar_sebagai == "tukang") {
-        // Jika mendaftar sebagai tukang
-        $deskripsi = $_POST["deskripsi"];
-        $harga = $_POST["harga"];
-        $no_rekening = $_POST["no_rekening"];
-
-        $query = "INSERT INTO tukang (username, password, email, nama_tukang, alamat, no_telp, deskripsi, harga, no_rekening) VALUES ('$username', '$password', '$email', '$nama', '$alamat', '$no_telp', '$deskripsi', '$harga', '$no_rekening')";
-    } else {
-        // Jika mendaftar sebagai customer
-        $query = "INSERT INTO customer (username, password, email, nama, alamat, no_telp) VALUES ('$username', '$password', '$email', '$nama', '$alamat', '$no_telp')";
-    }
-
-    if (mysqli_query($conn, $query)) {
-        // Registrasi berhasil
-        header("Location: login.php");
-        exit();
-    } else {
-        $registration_error = "Registrasi gagal. Silakan coba lagi.";
-    }
-}
-?>
-
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Form Registrasi</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta name="description" content="Login - Register Template">
+    <meta name="author" content="Lorenzo Angelino aka MrLolok">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9AD6B   ;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h2>REGISTRASI</h2>
-        <form method="POST" action="register.php">
-            <input class="input" id="username" name="username" placeholder="Masukkan username" required><br><br>
+    <div id="container-register">
+        <div id="title">
+        Register
+        </div>
 
-            <input type="password" class="input" id="password" placeholder="Masukkan username" name="password"
-                required><br><br>
+        <form action="add_gfsdreg.php" method="post">
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">email</i>
+                </div>
+                <input id="email" placeholder="Email" type="email" name="email" required class="validate" autocomplete="off">
+            </div>
 
-            <input type="email" class="input" id="email" name="email" placeholder="Masukkan email" required><br><br>
+            <div class="clearfix"></div>
+        
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input id="username" name="username" placeholder="Username" type="text" required class="validate" autocomplete="off">
+            </div>
 
-            <input class="input" id="nama" name="nama" placeholder="Masukkan nama anda" required><br><br>
+            <div class="clearfix"></div>
 
-            <input class="input" id="no_telp" name="no_telp" placeholder="Masukkan nomer hp" required><br><br>
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input id="password" name="password" placeholder="Password" type="password" required class="validate" autocomplete="off">
+            </div> 
+            
+            <div class="input">                
+            <select class="form-select" aria-label="Default select example" name="status">
+                <option selected>Open this select menu</option>
+                <option>Customer</option>
+                <option>Tukang</option>
+            </select>
+            </div>
+            <br>            
 
-            <input class="input" id="alamat" name="alamat" placeholder="Masukkan alamat" required><br><br>
-
-            <select id="daftar_sebagai" name="daftar_sebagai">
-                <option value="tukang">Tukang</option>
-                <option value="customer">Customer</option>
-            </select><br><br>
-
-            <button class="button"><span>Daftar</span></button>
-            <p>Sudah mempunyai akun? <a class="daftar-link" href="login.php">Login</a></p>
+            <input type="submit" name="add" value="Register" />
         </form>
+            <?php 
+                if(isset($_POST['submit'])){
+                    $email = $_POST['email'];
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $status = $_POST['status'];
 
-        <?php
-        if (isset($registration_error)) {
-            echo "<p>$registration_error</p>";
-        }
-        ?>
+                    include_once("kon.php");
+
+                    $result = mysqli_query($mysqli, "INSERT INTO tb_admin (username,password,email,status) VALUES('$username','$email','$email','$status')");
+	
+                }
+            ?>
+        <div class="register">
+            <span style="color: #657575">Do you already have an account?</span>
+            <a href="login.php"><button id="register-link">Log In here</button></a><br><br>
+        </div>
     </div>
 </body>
 

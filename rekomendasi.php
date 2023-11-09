@@ -8,18 +8,17 @@
     <meta name="author" content="">
    
 
-    <title>Cari Tukang</title>
-
+    <title>Cari Tukang</title>  
+ 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/component.css">
-    <!-- <link rel="stylesheet" href="css/custom-styles.css"> -->
-    <link rel="stylesheet" href="css/cs.css">
+    <link rel="stylesheet" href="css/custom-styles.css">
     <link rel="stylesheet" href="css/font-awesome.css">
-    
+	
      
-	  <link rel="stylesheet" href="css/demo.css">
+	 <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="css/font-awesome-ie7.css">
 
       <script src="js/jquery.mobilemenu.js"></script>
@@ -51,8 +50,8 @@
             <ul class="nav navbar-nav">
               <li><a href="index.php" seleceted>Beranda</a></li>
               <li><a href="#">Rekomendasi</a></li>
-              <li><a href="register.php">Daftar</a></li>
-              <li><a href="login.php">Login</a></li>              
+              <li><a href="#">Daftar</a></li>
+              <li><a href="#">Login</a></li>              
             </ul>
           </div><!--/.navbar-collapse -->
         </div>
@@ -76,7 +75,7 @@
   <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="img/banner2.png " alt="">
+            <img src="img/banner-image.jpg" alt="">
             <div class="carousel-caption">
               <h1>Selamat Datang di Cari Tukang.id</h1>
               <h2>Temukan jasa Tukang yang tepat di sekitar anda</h2>
@@ -186,25 +185,27 @@
             </div> 
           </div>
           <div class="block col-md-3">
-            <h1> Social Media</h1>
+            <h1> Aliquam quam lectusfacilisis auctor</h1>
             <ul class="social">
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fw-icon-twitter"></i></a></li>
               <li><a href="#"><i class="fw-icon-facebook"></i></a></li>
               <li><a href="#"><i class="fw-icon-linkedin"></i></a></li>
             </ul>
           </div>
         </div>
-        </div >
+        </div>
         
       </div>
       <div class="copy-rights">
       <div class="container">
         <div class="row">
           
-            <div class="col-md-12">
-              Copyright(c) CariTukang.</a>
+            <div class="col-md-6">
+              Copyright(c) website name. Designed by: <a href="http://www.alltemplateneeds.com"> www.alltemplateneeds.com</a>
             </div>
-            
+            <div class="col-md-6">
+              Images from: <a href="http://www.wallpaperswide.com">http://wallpaperswide.com</a> / <a href="http://www.wallcoo.net"> www.wallcoo.net</a>
+            </div>
             
           </div>
         </div>
@@ -218,7 +219,7 @@
     <script src="js/jquery-1.9.1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-      
+    
     
   </body>
-</html>
+</html>    
